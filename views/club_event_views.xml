@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+     <!--    Search Filter View -->
+    <record id="club_event_view_search" model="ir.ui.view">
+        <field name="name">club.event.search</field>
+        <field name="model">club.event</field>
+        <field name="arch" type="xml">
+            <search>
+
+                <!-- Search Fields -->
+                <field name="name"/>
+
+
+                <!-- Filter fields-->
+                <filter string="Archived"
+                        name="active"
+                        domain="[('active','=',False)]"/>
+
+
+
+
+
+            </search>
+        </field>
+    </record>
+
+
+    <!--    Club Event Form view-->
+    <record id="club_event_form_view" model="ir.ui.view">
+        <field name="name">club.event.form</field>
+        <field name="model">club.event</field>
+        <field name="arch" type="xml">
+            <form string="Subject" create="true" edit="true">
+                <header>
+                    <button name="action_done" type="object" string="Done" invisible="state in ['done','cancelled']"
+                            class="btn-primary"/>
+                    <button name="action_cancelled" type="object" string="Cancel"
+                            invisible="state in ['cancelled','done']" class="btn-primary"/>
+                    <field name="state" widget="statusbar" readonly="False"/>
+
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+
+
+                        <field name="club_id" widget="many2many_tags"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Description">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+    <!--    Club Event List View -->
+    <record id="club_event_list_view" model="ir.ui.view">
+        <field name="name">club.event.list</field>
+        <field name="model">club.event</field>
+        <field name="arch" type="xml">
+            <list string="Subject">
+                <field name="name"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="club_id" widget="many2many_tags"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+    <record id="action_club_event" model="ir.actions.act_window">
+        <field name="name">Club Event</field>
+        <field name="res_model">club.event</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

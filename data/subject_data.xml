@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="subject_math" model="manage.subject">
+    <field name="name">Maths</field>
+    </record>
+    <record id="subjects_science" model="manage.subject">
+    <field name="name">Science</field>
+    </record>
+    <record id="subjects_physices" model="manage.subject">
+    <field name="name">Physics</field>
+    </record>
+    <record id="subjects_chemistry" model="manage.subject">
+    <field name="name">Chemistry</field>
+    </record>
+    <record id="subjects_biology" model="manage.subject">
+    <field name="name">Biology</field>
+    </record>
+    <record id="subjects_social" model="manage.subject">
+    <field name="name">Social Science</field>
+    </record>
+    <record id="subjects_it" model="manage.subject">
+    <field name="name">IT</field>
+    </record>
+    <record id="subjects_english" model="manage.subject">
+    <field name="name">English</field>
+    </record>
+    <record id="subjects_malayalam" model="manage.subject">
+    <field name="name">Malayalam</field>
+    </record>
+    <record id="subjects_hindi" model="manage.subject">
+    <field name="name">Hindi</field>
+    </record>
+</odoo>

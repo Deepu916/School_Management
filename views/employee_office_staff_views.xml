@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="action_office_staff" model="ir.actions.act_window">
+        <field name="name">Office Staffs</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'default_role': 'staff'}</field>
+        <field name="domain">[('role','=','staff')]</field>
+    </record>
+
+</odoo>

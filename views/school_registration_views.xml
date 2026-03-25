@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!--    Search Filter View -->
+    <record id="school_registration_view_search" model="ir.ui.view">
+        <field name="name">school.registration.search</field>
+        <field name="model">school.registration</field>
+        <field name="arch" type="xml">
+            <search>
+
+                <!-- Search Fields -->
+                <field name="f_name"/>
+                <field name="l_name"/>
+                <field name="sequence"/>
+
+                <!-- Filter fields-->
+                <filter string="Male"
+                        name="gender"
+                        domain="[('gender','=','male')]"/>
+                <filter string="Female"
+                        name="gender"
+                        domain="[('gender','=','female')]"/>
+
+                <filter string="Draft"
+                        name="status"
+                        domain="[('status','=','Draft')]"/>
+                <filter string="Registration"
+                        name="status"
+                        domain="[('status','=','Registration')]"/>
+
+                <!-- Group By Filter -->
+                <filter string="Department"
+                        name="group_type"
+                        context="{'group_by': 'pre_academic_dpt'}"/>
+                <filter string="State"
+                        name="state_id"
+                        context="{'group_by': 'state_id'}"/>
+                <filter string="Gender"
+                        name="gender"
+                        context="{'group_by': 'gender'}"/>
+                <filter string="Status"
+                        name="status"
+                        context="{'group_by': 'status'}"/>
+
+
+            </search>
+        </field>
+    </record>
+
+
+    <!--    Registration Form View-->
+    <record id="school_registration_view_form" model="ir.ui.view">
+        <field name="name">Student Registration Form</field>
+        <field name="model">school.registration</field>
+        <field name="arch" type="xml">
+            <form string="Registration Form" create="true" edit="true">
+
+                <header>
+                    <button name="action_register" type="object" string="Register" class="btn-primary"
+                            invisible="status == 'registered'"/>
+                    <field name="status" widget="statusbar" readonly="False"/>
+                </header>
+                <sheet>
+                    <field name="sequence" decoration-bf="1" style="font-size:30px;"/>
+                    <field name="image" class="oe_avatar" widget="image"/>
+                    <group>
+                        <group string="General Info">
+                            <field name="f_name"/>
+                            <field name="l_name"/>
+                            <field name="father"/>
+                            <field name="mother"/>
+                            <field name="email"/>
+                            <field name="phone"/>
+
+                        </group>
+                        <group string="Other Info">
+                            <field name="dob"/>
+                            <field name="age"/>
+                            <field name="gender"/>
+                            <field name="registration_date"/>
+                            <field name="aadhaar_number"/>
+                            <field name="admission_number" invisible="status == 'draft'"/>
+                        </group>
+                        <notebook>
+                            <page string="Address">
+                                <group>
+                                    <span class="o_form_label o_td_label o_address_type fw-bold">Communication Address
+                                    </span>
+                                    <div class="o_address_format">
+                                        <field name="street" placeholder="Street" class="o_address_street"/>
+                                        <field name="street2" placeholder="Street 2" class="o_address_street"/>
+                                        <field name="city" placeholder="City" class="o_address_city"/>
+                                        <field name="state_id" placeholder="State" class="o_address_state"/>
+                                        <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                                        <field name="country_id" placeholder="Country" class="o_address_country"/>
+                                    </div>
+                                    <field name="same_as_communication"/>
+                                    <span class="o_form_label o_td_label o_address_type fw-bold"
+                                    >Permanent Address
+                                    </span>
+                                    <div class="o_address_format" invisible="same_as_communication">
+                                        <field name="prem_street" placeholder="Street" class="o_address_street"/>
+                                        <field name="prem_street2" placeholder="Street 2" class="o_address_street"/>
+                                        <field name="prem_city" placeholder="City" class="o_address_city"/>
+                                        <field name="prem_state_id" placeholder="State" class="o_address_state"/>
+                                        <field name="prem_zip" placeholder="ZIP" class="o_address_zip"/>
+                                        <field name="prem_country_id" placeholder="Country" class="o_address_country"/>
+                                    </div>
+
+                                </group>
+                            </page>
+                            <page string="Previous Academic Info">
+                                <group>
+                                    <field name="tc"/>
+                                    <field name="pre_academic_dpt"/>
+                                    <field name="pre_class_id" domain="[('department_id','ilike',pre_academic_dpt)]"/>
+                                    <field name="multi_school_id"/>
+                                </group>
+                            </page>
+                        </notebook>
+
+                    </group>
+                </sheet>
+                <chatter/>
+
+            </form>
+        </field>
+    </record>
+
+
+    <!--    Registration List View-->
+    <record id="school_registration_view_list" model="ir.ui.view">
+        <field name="name">Student Registraion Details</field>
+        <field name="model">school.registration</field>
+        <field name="arch" type="xml">
+
+            <list string="Registration">
+                <field name="sequence" string="Register Number"/>
+                <field name="f_name"/>
+                <field name="l_name"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="pre_class_id"/>
+                <field name="dob" optional="hide"/>
+                <field name="gender" optional="hide"/>
+                <field name="pre_academic_dpt" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <!--    Registration Action-->
+    <record id="action_school_management" model="ir.actions.act_window">
+        <field name="name">Student Registration</field>
+        <field name="res_model">school.registration</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+
+</odoo>

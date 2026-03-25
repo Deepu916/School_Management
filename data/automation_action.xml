@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!--        Server Action For User Creation -->
+        <record id="user_creation_server_action" model="ir.actions.server">
+            <field name="name">User Creation on Student Registration</field>
+            <field name="model_id" ref="model_registered_student"/>
+            <field name="state">code</field>
+            <field name="code">record._user_creation()</field>
+        </record>
+
+        <!--        Automation Rule for User Creation-->
+        <record id="user_creation_automation_rule" model="base.automation">
+            <field name="name">User Creation on Student Registration</field>
+            <field name="model_id" ref="model_registered_student"/>
+            <field name="trigger">on_create</field>
+            <field name="action_server_ids" eval="[(4, ref('user_creation_server_action'))]"/>
+            <field name="active" eval="True"/>
+        </record>
+
+        <!--        Server Action For User Deletion -->
+        <record id="user_deletion_server_action" model="ir.actions.server">
+            <field name="name">User Creation on Student Registration</field>
+            <field name="model_id" ref="model_registered_student"/>
+            <field name="state">code</field>
+            <field name="code">record._user_deletion()</field>
+        </record>
+
+        <!--        Automation Rule for User Deletion-->
+        <record id="user_deletion_automation_rule" model="base.automation">
+            <field name="name">User Deletion on Student Registration</field>
+            <field name="model_id" ref="model_registered_student"/>
+            <field name="trigger">on_unlink</field>
+            <field name="action_server_ids" eval="[(4, ref('user_deletion_server_action'))]"/>
+            <field name="active" eval="True"/>
+        </record>
+
+    </data>
+
+
+</odoo>
