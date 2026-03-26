@@ -31,7 +31,9 @@
         <field name="name">registered.student.list</field>
         <field name="model">registered.student</field>
         <field name="arch" type="xml">
-            <list create="false" decoration-success="attendance == 'present'"  decoration-danger="attendance == 'absent'">
+            <list create="false" decoration-success="attendance == 'present'"
+                  decoration-danger="attendance == 'absent'"
+                  decoration-warning="attendance=='half'">
                 <field name="f_name"/>
                 <field name="admission_number" />
                 <field name="email"/>

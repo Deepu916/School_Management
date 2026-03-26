@@ -48,10 +48,16 @@ class ClubEvent(models.Model):
 
         employees = self.env['res.partner'].search([('role', 'in', ['student', 'teacher', 'staff']),
                             ('email', '!=', False)])
+
+        main_email = employees[0]
+        cc_emails = ','.join((employees-main_email).mapped('email'))
         upcoming_events = self.search([])
+        if not upcoming_events:
+            return
         event_names = [event.name for event in upcoming_events
                        if event.start_date.date() == now.date()]
         begin = upcoming_events[0].start_date.date()
-        for employee in employees:
-            template.with_context(event_name = event_names,
-                                  date_begin = begin).send_mail(employee.id, force_send=True)
+        template.with_context(event_name = event_names,
+                            date_begin = begin,
+                            cc_emails=cc_emails).send_mail(main_email.id,
+                            force_send=True,email_values={'email_cc': cc_emails} )

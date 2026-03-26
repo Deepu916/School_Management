@@ -7,8 +7,9 @@
             <field name="subject">Club Event Reminder</field>
             <field name="email_from">deepuenaswork@gmail.com</field>
             <field name="email_to">{{ object.email }}</field>
+            <field name="email_cc"/>
             <field name="body_html" type="html">
-                <p>Hi <t t-out="object.name"/>,</p>
+                <p>Hi,</p>
                 <p>This is a reminder for the upcoming club event/s <t t-out="ctx.get('event_name')"/> in our school</p>
                <p><strong>Please make sure your participation on <t t-out="ctx.get('date_begin')"/></strong></p>
                <br/>

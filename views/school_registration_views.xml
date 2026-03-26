@@ -58,6 +58,8 @@
                 <header>
                     <button name="action_register" type="object" string="Register" class="btn-primary"
                             invisible="status == 'registered'"/>
+                    <button name="action_sync_exam" type="object" string="Sync Exam" class="btn-primary"
+                            invisible="status == 'draft'"/>
                     <field name="status" widget="statusbar" readonly="False"/>
                 </header>
                 <sheet>
@@ -139,8 +141,9 @@
                 <field name="f_name"/>
                 <field name="l_name"/>
                 <field name="email"/>
-                <field name="phone"/>
+                <field name="phone" optional="hide"/>
                 <field name="pre_class_id"/>
+                <field name="status"/>
                 <field name="dob" optional="hide"/>
                 <field name="gender" optional="hide"/>
                 <field name="pre_academic_dpt" optional="hide"/>

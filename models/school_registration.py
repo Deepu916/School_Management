@@ -12,6 +12,7 @@ class SchoolRegistration(models.Model):
     _description = 'Student Registration'
     _rec_name = 'sequence'
 
+    user_ids = fields.One2many('res.users','user_id',ondelete='cascade')
     f_name = fields.Char(string="First Name", required=True, tracking=True,ondelete="cascade")
     l_name = fields.Char(string="Last Name", required=True, tracking=True)
     father = fields.Char(string=" Father's Name")
@@ -52,7 +53,7 @@ class SchoolRegistration(models.Model):
         'registered.student',
         'registration_id',
         string='Registered Student',
-        ondelete='cascade'
+
     )
     _aadhaar_unique = models.Constraint('UNIQUE(aadhaar_number)','Aadhaar number must be unique')
 
@@ -84,8 +85,9 @@ class SchoolRegistration(models.Model):
     def action_register(self):
         """Register Button Action for status change and creating registered record"""
         if self.status == 'draft':
-            self.status = 'registered'
-            self.admission_number = self.env['ir.sequence'].next_by_code('student_admission')
+            print("After Draft if")
+            self.write({'status': 'registered',
+            'admission_number':self.env['ir.sequence'].next_by_code('student_admission')})
             self._create_registered_student()
 
     def _create_registered_student(self):
@@ -93,10 +95,16 @@ class SchoolRegistration(models.Model):
         existing = self.env['registered.student'].search(
             [('registration_id', '=', self.id)], limit=1)
         if not existing:
-            registered = self.env['registered.student'].create({'registration_id': self.id,})
-            exams = self.env['student.exam'].search([
-                ('class_name_id', '=', registered.current_class_id.id),
-                ('state', '=', 'assigned')
-            ])
-            for exam in exams:
-                registered.write({'student_exam_id': [(4, exam.id)]})
+            print("Inside Not existing if")
+            self.env['registered.student'].create({'registration_id': self.id,})
+
+    def action_sync_exam(self):
+        """Sync exam records for new registered students"""
+        registered = self.env['registered.student'].search(
+            [('registration_id', '=', self.id)], limit=1)
+        exams = self.env['student.exam'].search([
+            ('class_name_id', '=', registered.current_class_id.id),
+            ('state', '=', 'assigned')
+        ])
+        for exam in exams:
+            registered.write({'student_exam_id': [(4, exam.id)]})

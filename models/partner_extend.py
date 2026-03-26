@@ -10,5 +10,4 @@ class PartnerExtend(models.Model):
     role = fields.Selection([('student','Student'),('teacher','Teacher'),
                              ('staff','Office Staff')],string="Role")
     _unique_partner_role = models.Constraint('UNIQUE(name,role)',
-                                             'A partner with this name and role already exists')
-
+                                'A partner with this name and role already exists')
