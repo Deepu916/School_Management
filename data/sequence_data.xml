@@ -1,25 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <!--    Sequence Number -->
-    <data noupdate="1">
-        <!--        Unique Register Number -->
-        <record id="ir_sequence_student_registration" model="ir.sequence">
-            <field name="name">Registration Sequence</field>
-            <field name="code">sequence_code</field>
-            <field name="prefix">REG-NO-</field>
-            <field name="padding">5</field>
-            <field name="number_next">1</field>
-            <field name="number_increment">1</field>
-        </record>
-
-        <!--        Unique Admission Number -->
-        <record id="student_admission_number" model="ir.sequence">
-            <field name="name">Student Admission Number</field>
-            <field name="code">student_admission</field>
-            <field name="prefix">ADM-NO-</field>
-            <field name="padding">5</field>
-            <field name="number_next">1</field>
-            <field name="number_increment">1</field>
-        </record>
-    </data>
+    <record id="ir_sequence_student_admission" model="ir.sequence">
+        <field name="name">Registration Sequence</field>
+        <field name="code">sequence_code</field>
+        <field name="prefix">REG-NO-</field>
+        <field name="padding">5</field>
+        <field name="number_next">1</field>
+        <field name="number_increment">1</field>
+        <field name="company_id" eval="False"/>
+    </record>
 </odoo>

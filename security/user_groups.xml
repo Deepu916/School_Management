@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="student_user_group" model="res.groups">
+        <field name="name">Student User Group</field>
+    </record>
+
+    <record id="teacher_user_group" model="res.groups">
+        <field name="name">Teacher User Group</field>
+    </record>
+
+    <record id="staff_user_group" model="res.groups">
+        <field name="name">Office Staff User Group</field>
+    </record>
+</odoo>
