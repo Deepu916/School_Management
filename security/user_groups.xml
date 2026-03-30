@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
-    <record id="student_user_group" model="res.groups">
+    <!--    Student Group-->
+    <record id="student_group" model="res.groups">
         <field name="name">Student User Group</field>
     </record>
-
-    <record id="teacher_user_group" model="res.groups">
+    <!--Teacher Group-->
+    <record id="teacher_group" model="res.groups">
         <field name="name">Teacher User Group</field>
-    </record>
 
-    <record id="staff_user_group" model="res.groups">
+    </record>
+    <!--Staff Group-->
+    <record id="staff_group" model="res.groups">
         <field name="name">Office Staff User Group</field>
     </record>
+
+    <!--    Admin Group-->
+    <record id="school_admin_group" model="res.groups">
+        <field name="name">School Admin</field>
+    </record>
+
+    <record id="base.group_system" model="res.groups">
+        <field name="implied_ids" eval="[(4,ref('school_admin_group'))]"/>
+    </record>
+
+<!--    <record id="base.user_admin" model="res.users">-->
+<!--        <field name="implied_ids" eval="[(4,ref('school_admin_group'))]"/>-->
+<!--    </record>-->
 </odoo>

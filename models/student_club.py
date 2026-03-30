@@ -18,6 +18,7 @@ class StudentClub(models.Model):
     event_count = fields.Integer(string="Events", compute="_compute_event_count")
     assigner_id = fields.Many2one('res.partner',string="Assigner",
                                   domain="[('role','=','teacher')]",ondelete="cascade")
+    user_id = fields.Many2one('res.users',string="Students",)
 
     @api.depends('event_ids')
     def _compute_event_count(self):

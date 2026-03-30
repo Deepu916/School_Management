@@ -9,5 +9,6 @@ class PartnerExtend(models.Model):
 
     role = fields.Selection([('student','Student'),('teacher','Teacher'),
                              ('staff','Office Staff')],string="Role")
+    student_id = fields.Many2one('registered.student',string="Student")
     _unique_partner_role = models.Constraint('UNIQUE(name,role)',
                                 'A partner with this name and role already exists')

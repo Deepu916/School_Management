@@ -1,15 +1,69 @@
-<!--<?xml version="1.0" encoding="UTF-8" ?>-->
-<!--<odoo>-->
-<!--    <data noupdate="1">-->
-<!--        <record id="student_user_group_rule" model="ir.rule">-->
-<!--            <field name="name">Students can view only the student Registration record of themself</field>-->
-<!--            <field name="model_id" ref="school_management.model_registered_student"/>-->
-<!--            <field name="domain_force">[('user_id','=',2)]</field>-->
-<!--            <field name="groups" eval="[(4, ref('base.group_user'))]"/>-->
-<!--            <field name="perm_read" eval="1"/>-->
-<!--            <field name="perm_write" eval="0"/>-->
-<!--            <field name="perm_create" eval="0"/>-->
-<!--            <field name="perm_unlink" eval="0"/>-->
-<!--        </record>-->
-<!--    </data>-->
-<!--</odoo>-->
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="1">
+        <!--        Registered Student  Details -->
+        <record id="student_group_rule_registered" model="ir.rule">
+            <field name="name">Registered Student Details</field>
+            <field name="model_id" ref="school_management.model_registered_student"/>
+            <field name="groups" eval="[(4, ref('school_management.student_group'))]"/>
+            <field name="domain_force">[('user_id','=',user.id)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="student_group_rule_registered" model="ir.rule">
+            <field name="name">Registered Student Details</field>
+            <field name="model_id" ref="school_management.model_school_registration"/>
+            <field name="groups" eval="[(4, ref('school_management.student_group'))]"/>
+            <field name="domain_force">[('user_id','=',user.id)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <!--        Registered Student  Details Admin-->
+        <record id="school_admin_rule" model="ir.rule">
+            <field name="name">Registered Student Details Admin full access</field>
+            <field name="model_id" ref="school_management.model_registered_student"/>
+            <field name="groups" eval="[(4, ref('school_management.school_admin_group'))]"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+        </record>
+
+        <!--       Student Exam Details -->
+        <record id="student_group_rule_exam" model="ir.rule">
+            <field name="name">Students Exam Details</field>
+            <field name="model_id" ref="school_management.model_student_exam"/>
+            <field name="groups" eval="[(4, ref('school_management.student_group'))]"/>
+            <field name="domain_force">[('class_name_id', '=', user.partner_id.student_id.current_class_id.id)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+        <!--       Student Leave Details -->
+        <record id="student_group_rule_leave" model="ir.rule">
+            <field name="name">Students Leave Details</field>
+            <field name="model_id" ref="school_management.model_school_leave"/>
+            <field name="groups" eval="[(4, ref('school_management.student_group'))]"/>
+            <field name="domain_force">[('student_id.user_id','=',user.id)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+        <!--       Student Event Details -->
+        <record id="student_group_rule_event" model="ir.rule">
+            <field name="name">Students Event Details</field>
+            <field name="model_id" ref="school_management.model_club_event"/>
+            <field name="groups" eval="[(4, ref('school_management.student_group'))]"/>
+            <field name="domain_force">[('club_id.student_ids.user_id', '=', user.id)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+    </data>
+</odoo>
