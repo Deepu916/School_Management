@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="school_management_menu_root"
+              name="School Management"
+              action="action_school_management"/>
+    <!--Student Menu-->
+    <menuitem id="student_menu"
+              name="Student"
+              sequence="10"
+              parent="school_management_menu_root"
+              action="action_school_management"/>
+    <!--Sub Menu 1-->
+    <menuitem id="registration_menu"
+              name="Registration"
+              parent="student_menu"
+              action="action_school_management"/>
+    <!--Sub Menu 2-->
+    <menuitem id="registered_student"
+              name="Student"
+              parent="student_menu"
+              action="action_registered_student"/>
+    <!--    Employee Menu-->
+    <menuitem id="employees_menu_section"
+              name="Employeee"
+              parent="school_management_menu_root"
+              action="action_school_management"/>
+    <!--   Teacher Sub Menu 2-->
+    <menuitem id="employee_teachers"
+              name="Teachers"
+              parent="employees_menu_section"
+              action="action_employee_teacher"/>
+
+    <!--    Office Staff Sub Menu 3-->
+    <menuitem id="employee_office_staff"
+              name="Office Staffs"
+              parent="employees_menu_section"
+              action="action_office_staff"/>
+    <!--    Leave Menu-->
+    <menuitem id="school_leave_menu"
+              name="Leave"
+              parent="school_management_menu_root"
+              action="action_school_leave"/>
+    <!--    Exam Menu-->
+    <menuitem id="student_exam_menu"
+              name="Exam"
+              parent="school_management_menu_root"
+              action="action_student_exam"/>
+
+    <!--Club Menu-->
+    <menuitem id="student_club"
+              name="Club"
+              sequence="20"
+              parent="school_management_menu_root"
+              action="action_student_club"/>
+    <!--Event Menu-->
+    <menuitem id="student_club_event"
+              name="Event"
+              sequence="25"
+              parent="school_management_menu_root"
+              action="action_club_event"/>
+
+    <!--Configuration Menu-->
+    <menuitem id="configuration_menu_root"
+              name="Configuration"
+              sequence="30"
+              parent="school_management_menu_root"
+              action="action_school_management"/>
+    <!-- Department Sub Menu 1-->
+    <menuitem id="configuration_menu_root_sub1"
+              name="Manage Department"
+              parent="configuration_menu_root"
+              action="action_manage_department"/>
+    <!-- Class Sub Menu 2-->
+    <menuitem id="configuration_menu_root_sub2"
+              name="Manage Class"
+              parent="configuration_menu_root"
+              action="action_manage_class"/>
+    <!-- Subject Sub Menu 3-->
+    <menuitem id="configuration_menu_root_sub3"
+              name="Manage Subject"
+              parent="configuration_menu_root"
+              action="action_manage_subject"/>
+    <!-- Academic Year Sub Menu 4-->
+    <menuitem id="configuration_menu_root_sub4"
+              name="Manage Academic Year"
+              parent="configuration_menu_root"
+              action="action_manage_academic_year"/>
+
+</odoo>

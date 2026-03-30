@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--     Academic Year Form View-->
+    <record id="manage_academic_form_view" model="ir.ui.view">
+        <field name="name">manage.academic.form</field>
+        <field name="model">manage.academic</field>
+        <field name="arch" type="xml">
+            <form string="Academic" create="true" edit="true">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--Academic Year list view-->
+
+    <record id="manage_academic_list_view" model="ir.ui.view">
+        <field name="name">manage.academic.list</field>
+        <field name="model">manage.academic</field>
+        <field name="arch" type="xml">
+            <list string="Academic" editable="bottom">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+
+    <!--    Academic Year Action -->
+
+    <record id="action_manage_academic_year" model="ir.actions.act_window">
+        <field name="name">Academic Year</field>
+        <field name="res_model">manage.academic</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+
+</odoo>

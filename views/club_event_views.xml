@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+     <!--    Search Filter View -->
+    <record id="club_event_view_search" model="ir.ui.view">
+        <field name="name">club.event.search</field>
+        <field name="model">club.event</field>
+        <field name="arch" type="xml">
+            <search>
+
+                <!-- Search Fields -->
+                <field name="name"/>
+
+
+                <!-- Filter fields-->
+                <filter string="Archived"
+                        name="active"
+                        domain="[('active','=',False)]"/>
+
+
+
+
+
+            </search>
+        </field>
+    </record>
+
+
+    <!--    Club Event Form view-->
+    <record id="club_event_form_view" model="ir.ui.view">
+        <field name="name">club.event.form</field>
+        <field name="model">club.event</field>
+        <field name="arch" type="xml">
+            <form string="Subject" create="true" edit="true">
+                <header>
+                    <button name="action_done" type="object" string="Done" invisible="state in ['done','cancelled']"
+                            class="btn-primary"/>
+                    <button name="action_cancelled" type="object" string="Cancel"
+                            invisible="state in ['cancelled','done']" class="btn-primary"/>
+                    <field name="state" widget="statusbar" readonly="False"/>
