@@ -12,6 +12,10 @@
     'data': [
         'security/user_groups.xml',
         'security/ir_rules.xml',
+        'security/ir_rules_admin.xml',
+        'security/ir_rules_company.xml',
+        'security/ir_rules_staff.xml',
+        'security/ir_rules_teacher.xml',
         'security/ir.model.access.csv',
         'data/sequence_data.xml',
         'data/department_data.xml',

@@ -76,10 +76,11 @@ class RegisteredStudent(models.Model):
             new_user.partner_id.write({
                 "role":'student'
             })
+            group_student = self.env.ref('school_management.student_group')
+            new_user.write({'group_ids':[(4,group_student.id)]})
             record.user_id = new_user
             record.partner_id = new_user.partner_id
         return new_user
-
 
     def daily_attendance_check(self):
         """Attendance Check based on leaves"""

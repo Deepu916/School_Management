@@ -1,6 +1,6 @@
 """Student exam model"""
 # -*- coding: utf-8 -*-
-from odoo import fields, models
+from odoo import fields, models, api
 from odoo.exceptions import UserError
 
 
@@ -22,7 +22,9 @@ class StudentExam(models.Model):
     paper_line_ids = fields.One2many(
         'student.exam.paper_line', 'exam_id', string='Exam Papers'
     )
-    student_id = fields.Many2many('registered.student', string='Student',ondelete='cascade')
+    student_id = fields.Many2many('registered.student', string='Student', ondelete='cascade')
+    multi_school_id = fields.Many2one('res.company',
+                                      string="School", default=lambda self: self.env.user.company_id)
 
     def action_add(self):
         """Assigning  Exam to Student button action"""
@@ -50,7 +52,7 @@ class StudentExamPaperLine(models.Model):
         related='exam_id.class_department_id',
         store=True
     )
-    subject_id = fields.Many2one('manage.subject',string='Subject',
+    subject_id = fields.Many2one('manage.subject', string='Subject',
                                  domain="['|', ('department_id', '=', False),"
                                         "('department_id', '=', subject_department_id)]")
     pass_mark = fields.Float(string='Pass Mark')

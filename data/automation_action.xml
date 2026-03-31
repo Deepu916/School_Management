@@ -17,6 +17,5 @@
             <field name="action_server_ids" eval="[(4, ref('user_creation_server_action'))]"/>
             <field name="active" eval="True"/>
         </record>
-
     </data>
 </odoo>

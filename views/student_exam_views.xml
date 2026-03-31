@@ -14,6 +14,7 @@
                     <group>
                         <field name="name" string="Exam Name"/>
                         <field name="class_name_id" string="Class"/>
+                        <field name="multi_school_id" string="School"/>
                     </group>
                     <notebook>
                         <page string="Papers">

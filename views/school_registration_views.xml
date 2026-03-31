@@ -132,7 +132,7 @@
 
     <!--    Registration List View-->
     <record id="school_registration_view_list" model="ir.ui.view">
-        <field name="name">Student Registraion Details</field>
+        <field name="name">Student Registration Details</field>
         <field name="model">school.registration</field>
         <field name="arch" type="xml">
 

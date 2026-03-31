@@ -12,6 +12,7 @@
                             <field name="student_id" string="Student"/>
                             <field name="student_class" string="Class"/>
                             <field name="reason" string="Reason"/>
+                            <field name="multi_school_id" string="School"/>
                         </group>
 
                         <group string="Date Info">
@@ -42,6 +43,7 @@
                 <field name="start_date"/>
                 <field name="end_date"/>
                 <field name="total_days"/>
+                <field name="multi_school_id"/>
             </list>
         </field>
     </record>

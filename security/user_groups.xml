@@ -20,10 +20,7 @@
     </record>
 
     <record id="base.group_system" model="res.groups">
-        <field name="implied_ids" eval="[(4,ref('school_admin_group'))]"/>
+        <field name="implied_ids" eval="[(4,ref('school_admin_group')),(4,ref('staff_group'))]"/>
     </record>
 
-<!--    <record id="base.user_admin" model="res.users">-->
-<!--        <field name="implied_ids" eval="[(4,ref('school_admin_group'))]"/>-->
-<!--    </record>-->
 </odoo>

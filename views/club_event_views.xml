@@ -15,11 +15,6 @@
                 <filter string="Archived"
                         name="active"
                         domain="[('active','=',False)]"/>
-
-
-
-
-
             </search>
         </field>
     </record>
@@ -44,8 +39,7 @@
                         <field name="name"/>
                             <field name="start_date"/>
                             <field name="end_date"/>
-
-
+                            <field name="multi_school_id" string="School"/>
                         <field name="club_id" widget="many2many_tags"/>
                     </group>
 
@@ -68,6 +62,7 @@
                 <field name="name"/>
                 <field name="start_date"/>
                 <field name="end_date"/>
+                <field name="multi_school_id"/>
                 <field name="club_id" widget="many2many_tags"/>
                 <field name="state"/>
             </list>

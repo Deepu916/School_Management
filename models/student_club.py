@@ -19,7 +19,6 @@ class StudentClub(models.Model):
     assigner_id = fields.Many2one('res.partner',string="Assigner",
                                   domain="[('role','=','teacher')]",ondelete="cascade")
     user_id = fields.Many2one('res.users',string="Students",)
-
     @api.depends('event_ids')
     def _compute_event_count(self):
         """Compute number of events for the current club"""
