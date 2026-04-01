@@ -50,6 +50,7 @@ class SchoolLeave(models.Model):
         if self.student_id:
             record = self.env['registered.student'].search([('id','=',self.student_id.id)])
             self.student_class=record.current_class_id.name
+            self.multi_school_id = record.registration_id.multi_school_id
 
     @api.depends('start_date','end_date')
     def _compute_total_days(self):

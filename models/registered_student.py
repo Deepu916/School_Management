@@ -24,6 +24,9 @@ class RegisteredStudent(models.Model):
                                       ondelete='cascade',)
     club_ids = fields.Many2many('student.club',
                                 string="Clubs",
+                                relation='student_club_registered_student_rel',
+                                column1='student_id',
+                                column2='club_id',
                                 ondelete='cascade')
 
     current_class_id = fields.Many2one('manage.class', string='Current Class',

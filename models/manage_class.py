@@ -14,3 +14,4 @@ class ManageClass(models.Model):
     head_id = fields.Many2one( 'res.users', related='department_id.hod_id',
                                string="HOD", readonly=True,store=True)
     multi_school_id = fields.Many2one('res.company', string="School")
+    student_ids = fields.One2many('registered.student','current_class_id',string="Student")

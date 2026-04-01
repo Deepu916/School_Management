@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <data noupdate="1">
-<!--        Student Leave Details Access -->
+        <!--        Student Leave Details Access -->
         <record id="student_leave_teacher_rule" model="ir.rule">
             <field name="name">Teacher Access on Leave</field>
             <field name="model_id" ref="school_management.model_school_leave"/>
@@ -9,17 +9,24 @@
             <field name="domain_force">[(1,'=',1)]</field>
         </record>
 
-<!--        Exam Details Access-->
+        <!--        Exam Details Access-->
         <record id="exam_teacher_rule" model="ir.rule">
             <field name="name">Teacher Access on Exam</field>
             <field name="model_id" ref="school_management.model_student_exam"/>
             <field name="groups" eval="[(4,ref('school_management.teacher_group'))]"/>
             <field name="domain_force">[(1,'=',1)]</field>
         </record>
-<!--        Student Registration-->
+        <!--        Student Registration Access-->
         <record id="registration_teacher_rule" model="ir.rule">
             <field name="name">Teacher Access on Student Details</field>
             <field name="model_id" ref="school_management.model_school_registration"/>
+            <field name="groups" eval="[(4,ref('school_management.teacher_group'))]"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+        </record>
+        <!--        Student Class Details Access-->
+        <record id="class_teacher_rule" model="ir.rule">
+            <field name="name">Teacher Access on Class Details</field>
+            <field name="model_id" ref="school_management.model_manage_class"/>
             <field name="groups" eval="[(4,ref('school_management.teacher_group'))]"/>
             <field name="domain_force">[(1,'=',1)]</field>
         </record>

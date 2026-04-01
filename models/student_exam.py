@@ -1,6 +1,6 @@
 """Student exam model"""
 # -*- coding: utf-8 -*-
-from odoo import fields, models, api
+from odoo import fields, models
 from odoo.exceptions import UserError
 
 
@@ -24,7 +24,7 @@ class StudentExam(models.Model):
     )
     student_id = fields.Many2many('registered.student', string='Student', ondelete='cascade')
     multi_school_id = fields.Many2one('res.company',
-                                      string="School", default=lambda self: self.env.user.company_id)
+                    string="School", default=lambda self: self.env.user.company_id)
 
     def action_add(self):
         """Assigning  Exam to Student button action"""

@@ -11,14 +11,19 @@ class StudentClub(models.Model):
     name = fields.Char(string="Club Name", required=True)
     student_ids = fields.Many2many(
         'registered.student',
+        relation='student_club_registered_student_rel',
+        column1='club_id',
+        column2='student_id',
         string="Students",
-        readonly=True,
     )
     event_ids = fields.Many2many('club.event', string="Events",ondelete="cascade")
     event_count = fields.Integer(string="Events", compute="_compute_event_count")
     assigner_id = fields.Many2one('res.partner',string="Assigner",
                                   domain="[('role','=','teacher')]",ondelete="cascade")
     user_id = fields.Many2one('res.users',string="Students",)
+    multi_school_id = fields.Many2one('res.company',
+                    string="School", default=lambda self: self.env.user.company_id)
+
     @api.depends('event_ids')
     def _compute_event_count(self):
         """Compute number of events for the current club"""

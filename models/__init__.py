@@ -12,4 +12,3 @@ from . import sale_order_inherited_model
 from . import school_leave
 from . import student_exam
 from . import partner_extend
-

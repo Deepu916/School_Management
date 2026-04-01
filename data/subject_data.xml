@@ -1,33 +1,59 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="subject_math" model="manage.subject">
-    <field name="name">Maths</field>
+        <field name="name">Maths</field>
+        <field name="department_id"
+               eval="[(6,0,[ref('school_management.class_lp'),ref('school_management.class_up'),ref('school_management.class_hs')])]"/>
     </record>
     <record id="subjects_science" model="manage.subject">
-    <field name="name">Science</field>
+        <field name="name">Science</field>
+        <field name="department_id"
+               eval="[(6,0,[ref('school_management.class_lp'),ref('school_management.class_up')])]"/>
+
     </record>
-    <record id="subjects_physices" model="manage.subject">
-    <field name="name">Physics</field>
+    <record id="subjects_physics" model="manage.subject">
+        <field name="name">Physics</field>
+        <field name="department_id" eval="[(6,0,[ref('school_management.class_hs')])]"/>
+
     </record>
     <record id="subjects_chemistry" model="manage.subject">
-    <field name="name">Chemistry</field>
+        <field name="name">Chemistry</field>
+        <field name="department_id" eval="[(6,0,[ref('school_management.class_hs')])]"/>
+
     </record>
     <record id="subjects_biology" model="manage.subject">
-    <field name="name">Biology</field>
+        <field name="name">Biology</field>
+        <field name="department_id" eval="[(6,0,[ref('school_management.class_hs')])]"/>
+
     </record>
     <record id="subjects_social" model="manage.subject">
-    <field name="name">Social Science</field>
+        <field name="name">Social Science</field>
+        <field name="department_id"
+               eval="[(6,0,[ref('school_management.class_lp'),ref('school_management.class_up')])]"/>
+
     </record>
     <record id="subjects_it" model="manage.subject">
-    <field name="name">IT</field>
+        <field name="name">IT</field>
+        <field name="department_id"
+               eval="[(6,0,[ref('school_management.class_up'),ref('school_management.class_hs')])]"/>
+
     </record>
     <record id="subjects_english" model="manage.subject">
-    <field name="name">English</field>
+        <field name="name">English</field>
+        <field name="department_id"
+               eval="[(6,0,[ref('school_management.class_lp'),ref('school_management.class_up'),ref('school_management.class_hs')])]"/>
+
     </record>
     <record id="subjects_malayalam" model="manage.subject">
-    <field name="name">Malayalam</field>
+        <field name="name">Malayalam</field>
+        <field name="department_id"
+               eval="[(6,0,[ref('school_management.class_lp'),ref('school_management.class_up'),ref('school_management.class_hs')])]"/>
+
     </record>
     <record id="subjects_hindi" model="manage.subject">
-    <field name="name">Hindi</field>
+        <field name="name">Hindi</field>
+        <field name="department_id"
+               eval="[(6,0,[ref('school_management.class_lp'),ref('school_management.class_up'),ref('school_management.class_hs')])]"/>
+
     </record>
 </odoo>

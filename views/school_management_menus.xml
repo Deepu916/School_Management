@@ -23,6 +23,7 @@
     <menuitem id="employees_menu_section"
               name="Employeee"
               parent="school_management_menu_root"
+              groups="school_management.teacher_group,school_management.staff_group,school_management.school_admin_group"
               action="action_school_management"/>
     <!--   Teacher Sub Menu 2-->
     <menuitem id="employee_teachers"
@@ -69,6 +70,7 @@
     <menuitem id="configuration_menu_root_sub1"
               name="Manage Department"
               parent="configuration_menu_root"
+              groups="school_management.teacher_group,school_management.staff_group,school_management.school_admin_group"
               action="action_manage_department"/>
     <!-- Class Sub Menu 2-->
     <menuitem id="configuration_menu_root_sub2"
@@ -79,11 +81,13 @@
     <menuitem id="configuration_menu_root_sub3"
               name="Manage Subject"
               parent="configuration_menu_root"
+              groups="school_management.teacher_group,school_management.staff_group,school_management.school_admin_group"
               action="action_manage_subject"/>
     <!-- Academic Year Sub Menu 4-->
     <menuitem id="configuration_menu_root_sub4"
               name="Manage Academic Year"
               parent="configuration_menu_root"
+              groups="school_management.teacher_group,school_management.staff_group,school_management.school_admin_group"
               action="action_manage_academic_year"/>
 
 </odoo>

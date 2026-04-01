@@ -18,7 +18,7 @@
             <field name="name">Registered Student Details</field>
             <field name="model_id" ref="school_management.model_school_registration"/>
             <field name="groups" eval="[(4, ref('school_management.student_group'))]"/>
-            <field name="domain_force">[('user_id','=',user.id)]</field>
+            <field name="domain_force">[('user_ids.user_id','=',user.id)]</field>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="False"/>
             <field name="perm_create" eval="False"/>
@@ -30,7 +30,7 @@
             <field name="name">Students Exam Details</field>
             <field name="model_id" ref="school_management.model_student_exam"/>
             <field name="groups" eval="[(4, ref('school_management.student_group'))]"/>
-            <field name="domain_force">[('class_name_id','=',user.current_class_id.id)]</field>
+            <field name="domain_force">[('student_id.user_id','=',user.id)]</field>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="False"/>
             <field name="perm_create" eval="False"/>
@@ -50,7 +50,7 @@
         </record>
 
         <!--       Student Club Details -->
-        <record id="student_group_rule_event" model="ir.rule">
+        <record id="student_group_rule_club" model="ir.rule">
             <field name="name">Students Event Details</field>
             <field name="model_id" ref="school_management.model_student_club"/>
             <field name="groups" eval="[(4, ref('school_management.student_group'))]"/>
@@ -72,5 +72,18 @@
             <field name="perm_create" eval="False"/>
             <field name="perm_unlink" eval="False"/>
         </record>
+
+        <!--        Student Class Details-->
+        <record id="class_details_rule" model="ir.rule">
+            <field name="name">Student Class Details</field>
+            <field name="model_id" ref="school_management.model_manage_class"/>
+            <field name="groups" eval="[(4, ref('school_management.student_group'))]"/>
+            <field name="domain_force">[('student_ids.user_id', '=', user.id)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
     </data>
 </odoo>
