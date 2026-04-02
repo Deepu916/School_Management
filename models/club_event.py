@@ -18,7 +18,7 @@ class ClubEvent(models.Model):
     state=fields.Selection([('planned','Planned'),('done','Done'),
                             ('cancelled','Cancelled')],default='planned')
     active = fields.Boolean(default=True)
-    multi_school_id = fields.Many2one('res.company', string="School",
+    company_id = fields.Many2one('res.company', string="School",
                         default=lambda self:self.env.user.company_id,required=True)
 
     def action_done(self):

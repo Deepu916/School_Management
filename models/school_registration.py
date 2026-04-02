@@ -48,7 +48,7 @@ class SchoolRegistration(models.Model):
     sequence = fields.Char(string='Sequence', copy=False, default="New", readonly=True)
     status = fields.Selection([('draft', 'Draft'), ('registered', 'Registered')], default="draft")
     admission_number = fields.Char(string="Admission Number",readonly=True,copy=False)
-    multi_school_id = fields.Many2one('res.company', string="School",
+    company_id = fields.Many2one('res.company', string="School",
                                       default=lambda self:self.env.user.company_id)
     user_ids = fields.Many2one('registered.student',string="User",ondelete='cascade')
 

@@ -116,7 +116,7 @@
                                     <field name="tc"/>
                                     <field name="pre_academic_dpt"/>
                                     <field name="pre_class_id" domain="[('department_id','ilike',pre_academic_dpt)]"/>
-                                    <field name="multi_school_id"/>
+                                    <field name="company_id"/>
                                 </group>
                             </page>
                         </notebook>

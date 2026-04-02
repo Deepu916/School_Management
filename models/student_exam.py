@@ -23,7 +23,7 @@ class StudentExam(models.Model):
         'student.exam.paper_line', 'exam_id', string='Exam Papers'
     )
     student_id = fields.Many2many('registered.student', string='Student', ondelete='cascade')
-    multi_school_id = fields.Many2one('res.company',
+    company_id = fields.Many2one('res.company',
                     string="School", default=lambda self: self.env.user.company_id)
 
     def action_add(self):

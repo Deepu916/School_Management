@@ -21,7 +21,7 @@ class SchoolLeave(models.Model):
     half_leave = fields.Selection([('forenoon','Forenoon'),('afternoon','Afternoon')],
                                   string='Half Leave')
     reason = fields.Text(string='Reason')
-    multi_school_id = fields.Many2one('res.company',
+    company_id = fields.Many2one('res.company',
                         string="School", default=lambda self:self.env.user.company_id,required=True)
     @api.constrains('student_id','start_date','end_date','half_days','half_leave')
     def _check_same_time_leaves(self):
