@@ -10,6 +10,7 @@ class SchoolRegistration(models.Model):
     _name = 'school.registration'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Student Registration'
+    _check_company_auto = True
     _rec_name = 'sequence'
 
 
@@ -83,7 +84,6 @@ class SchoolRegistration(models.Model):
     def action_register(self):
         """Register Button Action for status change and creating registered record"""
         if self.status == 'draft':
-            print("After Draft if")
             self.write({'status': 'registered',
             'admission_number':self.env['ir.sequence'].next_by_code('student_admission')})
             self._create_registered_student()
@@ -93,10 +93,8 @@ class SchoolRegistration(models.Model):
         existing = self.env['registered.student'].search(
             [('registration_id', '=', self.id)], limit=1)
         if not existing:
-            print("Inside Not existing if")
             self.env['registered.student'].create({'registration_id': self.id,})
             self.user_ids = self.env['registered.student'].search([('registration_id','=',self.id)])
-
 
 
     def action_sync_exam(self):

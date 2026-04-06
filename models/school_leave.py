@@ -21,7 +21,7 @@ class SchoolLeave(models.Model):
     half_leave = fields.Selection([('forenoon','Forenoon'),('afternoon','Afternoon')],
                                   string='Half Leave')
     reason = fields.Text(string='Reason')
-    company_id = fields.Many2one('res.company',
+    multi_school_id = fields.Many2one('res.company',
                         string="School", default=lambda self:self.env.user.company_id,required=True)
     @api.constrains('student_id','start_date','end_date','half_days','half_leave')
     def _check_same_time_leaves(self):
@@ -49,8 +49,8 @@ class SchoolLeave(models.Model):
         """Autofill  class when student is selected"""
         if self.student_id:
             record = self.env['registered.student'].search([('id','=',self.student_id.id)])
-            self.student_class=record.current_class_id.name
-            self.multi_school_id = record.registration_id.multi_school_id
+            self.student_class = record.current_class_id.name
+            self.multi_school_id = record.registration_id.company_id
 
     @api.depends('start_date','end_date')
     def _compute_total_days(self):

@@ -8,11 +8,12 @@
     'version': '19.0.1.0.0',
     'category': 'School Management',
     'application': True,
-    'depends': ['base', 'mail', 'sale', 'base_automation'],
+    'depends': ['base', 'mail', 'sale', 'base_automation','product'],
     'data': [
         'security/user_groups.xml',
         'security/ir_rules.xml',
         'security/ir_rules_teacher.xml',
+        'security/multi_company_rule.xml',
         'security/ir.model.access.csv',
         'data/sequence_data.xml',
         'data/department_data.xml',

@@ -77,7 +77,8 @@ class RegisteredStudent(models.Model):
                 "email":record.email,
             })
             new_user.partner_id.write({
-                "role":'student'
+                "role":'student',
+                "company_id":record.company_id.id
             })
             group_student = self.env.ref('school_management.student_group')
             new_user.write({'group_ids':[(4,group_student.id)]})

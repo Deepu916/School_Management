@@ -10,6 +10,7 @@
             <field name="state" widget="statusbar" statusbar_visible="draft,sent,admitted,sale,cancel"/>
         </xpath>
 
+
     </field>
 </record>
 </odoo>

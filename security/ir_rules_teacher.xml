@@ -6,7 +6,7 @@
             <field name="name">Teacher Access on Leave</field>
             <field name="model_id" ref="school_management.model_school_leave"/>
             <field name="groups" eval="[(4,ref('school_management.teacher_group'))]"/>
-            <field name="domain_force">[('multi_school_id','in',user.company_ids.ids)]</field>
+            <field name="domain_force">[('company_id','in',user.company_ids.ids)]</field>
         </record>
 
         <!--        Exam Details Access-->
@@ -14,7 +14,7 @@
             <field name="name">Teacher Access on Exam</field>
             <field name="model_id" ref="school_management.model_student_exam"/>
             <field name="groups" eval="[(4,ref('school_management.teacher_group'))]"/>
-            <field name="domain_force">[('multi_school_id','in',user.company_ids.ids)]</field>
+            <field name="domain_force">[('company_id','in',user.company_ids.ids)]</field>
         </record>
 
         <!--        Student Registration Access-->
@@ -22,7 +22,7 @@
             <field name="name">Teacher Access on Student Details</field>
             <field name="model_id" ref="school_management.model_school_registration"/>
             <field name="groups" eval="[(4,ref('school_management.teacher_group'))]"/>
-            <field name="domain_force">[('multi_school_id','in',user.company_ids.ids)]</field>
+            <field name="domain_force">[('company_id','in',user.company_ids.ids)]</field>
         </record>
         <!--        Student Class Details Access-->
         <record id="class_teacher_rule" model="ir.rule">
@@ -37,7 +37,8 @@
             <field name="name">Teacher Access on Student Details</field>
             <field name="model_id" ref="school_management.model_club_event"/>
             <field name="groups" eval="[(4,ref('school_management.teacher_group'))]"/>
-            <field name="domain_force">[('multi_school_id','in',user.company_ids.ids)]</field>
+            <field name="domain_force">[('company_id','in',user.company_ids.ids)]</field>
         </record>
     </data>
+
 </odoo>
