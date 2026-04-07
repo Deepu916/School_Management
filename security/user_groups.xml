@@ -25,6 +25,7 @@
     <record id="staff_group" model="res.groups">
         <field name="name">Office Staff </field>
         <field name="privilege_id" ref="school_management_privilege"/>
+        <field name="implied_ids" eval="[(4,ref('base.group_system'))]"/>
     </record>
 
     <!--    Admin Group-->

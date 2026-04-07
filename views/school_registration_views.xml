@@ -59,7 +59,7 @@
                     <button name="action_register" type="object" string="Register" class="btn-primary"
                             invisible="status == 'registered'"/>
                     <button name="action_sync_exam" type="object" string="Sync Exam" class="btn-primary"
-                            invisible="status == 'draft'"/>
+                            invisible="status == 'draft'" groups='school_management.teacher_group,school_management.staff_group,school_management.school_admin_group'/>
                     <field name="status" widget="statusbar" readonly="False"/>
                 </header>
                 <sheet>

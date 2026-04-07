@@ -44,7 +44,5 @@
             <field name="company_id" eval="ref('base.main_company')"/>
         </record>
 
-
-
     </data>
 </odoo>

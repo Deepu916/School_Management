@@ -33,7 +33,7 @@
             <field name="name">Leave Multi Company Rule</field>
             <field name="model_id" ref="school_management.model_school_leave"/>
             <field name="groups" eval="[(4,ref('school_management.teacher_group'))]"/>
-            <field name="domain_force">['|',('company_id','=',False),('company_id','in', company_ids)]</field>
+            <field name="domain_force">['|',('multi_school_id','=',False),('multi_school_id','in', company_ids)]</field>
         </record>
 
         <record id="club_event_multi_company_rule" model="ir.rule">
@@ -42,5 +42,12 @@
             <field name="groups" eval="[(4,ref('school_management.teacher_group'))]"/>
             <field name="domain_force">['|',('company_id','=',False),('company_id','in', company_ids)]</field>
         </record>
+
+        <record id="transfer_multi_company_rule" model="ir.rule">
+            <field name="name">Transfer Multi Company Rule</field>
+            <field name="model_id" ref="base.model_res_company"/>
+            <field name="groups" eval="[(4,ref('base.group_user'))]"/>
+        </record>
+
     </data>
 </odoo>

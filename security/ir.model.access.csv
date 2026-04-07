@@ -11,8 +11,10 @@ access_club_event_student,club.event.student,model_club_event,school_management.
 access_school_leave_student,school.leave.student,model_school_leave,school_management.student_group,1,0,1,0
 access_student_exam_student,student.exam.student,model_student_exam,school_management.student_group,1,0,0,0
 access_student_exam_paper_line_student,student.exam.paper_line.student,model_student_exam_paper_line,school_management.student_group,1,0,0,0
+access_transfer,school.transfer,model_transfer_request,school_management.student_group,1,0,1,0
 
 access_school_registration_teacher,school.registration.student,model_school_registration,school_management.teacher_group,1,1,0,0
+access_transfer_teacher,school.transfer.teacher,model_transfer_request,school_management.teacher_group,1,0,1,0
 access_registered_student_teacher,registered.student.teacher,model_registered_student,school_management.teacher_group,1,1,0,0
 access_manage_department_teacher,manage.department.teacher,model_manage_department,school_management.teacher_group,1,0,0,0
 access_manage_class_teacher,manage.class.teacher,model_manage_class,school_management.teacher_group,1,1,0,0
@@ -25,6 +27,7 @@ access_student_exam_teacher,student.exam.teacher,model_student_exam,school_manag
 access_student_exam_paper_line_teacher,student.exam.paper_line.teacher,model_student_exam_paper_line,school_management.teacher_group,1,1,1,1
 
 access_school_registration_staff,school.registration.student,model_school_registration,school_management.staff_group,1,1,1,1
+access_transfer_staff,school.transfer.staff,model_transfer_request,school_management.staff_group,1,1,1,1
 access_registered_student_staff,registered.student.admin,model_registered_student,school_management.staff_group,1,1,1,1
 access_manage_department_staff,manage.department.admin,model_manage_department,school_management.staff_group,1,1,1,1
 access_manage_class_staff,manage.class.admin,model_manage_class,school_management.staff_group,1,1,1,1
@@ -37,6 +40,7 @@ access_student_exam_staff,student.exam.admin,model_student_exam,school_managemen
 access_student_exam_paper_line_staff,student.exam.paper_line.admin,model_student_exam_paper_line,school_management.staff_group,1,1,1,1
 
 access_school_registration_admin,school.registration.student,model_school_registration,school_management.school_admin_group,1,1,1,1
+access_transfer_admin,school.transfer.admin,model_transfer_request,school_management.school_admin_group,1,1,1,1
 access_registered_student_admin,registered.student.admin,model_registered_student,school_management.school_admin_group,1,1,1,1
 access_manage_department_admin,manage.department.admin,model_manage_department,school_management.school_admin_group,1,1,1,1
 access_manage_class_admin,manage.class.admin,model_manage_class,school_management.school_admin_group,1,1,1,1

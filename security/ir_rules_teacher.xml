@@ -6,7 +6,7 @@
             <field name="name">Teacher Access on Leave</field>
             <field name="model_id" ref="school_management.model_school_leave"/>
             <field name="groups" eval="[(4,ref('school_management.teacher_group'))]"/>
-            <field name="domain_force">[('company_id','in',user.company_ids.ids)]</field>
+            <field name="domain_force">[('multi_school_id','in',user.company_ids.ids)]</field>
         </record>
 
         <!--        Exam Details Access-->
@@ -38,6 +38,13 @@
             <field name="model_id" ref="school_management.model_club_event"/>
             <field name="groups" eval="[(4,ref('school_management.teacher_group'))]"/>
             <field name="domain_force">[('company_id','in',user.company_ids.ids)]</field>
+        </record>
+
+        <record id="teacher_group_rule_transfer" model="ir.rule">
+            <field name="name">Transfer Details Teacher</field>
+            <field name="model_id" ref="school_management.model_transfer_request"/>
+            <field name="groups" eval="[(4,ref('school_management.teacher_group'))]"/>
+            <field name="domain_force">[('current_company_id','in',user.company_ids.ids)]</field>
         </record>
     </data>
 

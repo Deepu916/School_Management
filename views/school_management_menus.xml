@@ -19,6 +19,10 @@
               name="Student"
               parent="student_menu"
               action="action_registered_student"/>
+    <menuitem id="transfer_menu"
+              name="Transfer Request"
+              parent="student_menu"
+              action="action_transfer_request"/>
     <!--    Employee Menu-->
     <menuitem id="employees_menu_section"
               name="Employeee"

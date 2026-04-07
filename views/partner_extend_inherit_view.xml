@@ -9,9 +9,6 @@
         <xpath expr="//field[@name='category_id']" position="after">
             <field name="role"/>
         </xpath>
-        <xpath expr="//field[@name='role']" position="after">
-            <field name="associated_products_ids" widget="many2many_tags"/>
-        </xpath>
 
     </field>
 </record>

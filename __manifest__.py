@@ -36,6 +36,7 @@
         'views/employee_office_staff_views.xml',
         'views/school_leave_views.xml',
         'views/student_exam_views.xml',
+        'views/transfer_views.xml',
         'views/school_management_menus.xml'
     ]
 }
