@@ -12,6 +12,8 @@ access_school_leave_student,school.leave.student,model_school_leave,school_manag
 access_student_exam_student,student.exam.student,model_student_exam,school_management.student_group,1,0,0,0
 access_student_exam_paper_line_student,student.exam.paper_line.student,model_student_exam_paper_line,school_management.student_group,1,0,0,0
 access_transfer,school.transfer,model_transfer_request,school_management.student_group,1,0,1,0
+access_student_report,student.report,model_school_report_wizard,school_management.student_group,1,1,1,1
+
 
 access_school_registration_teacher,school.registration.student,model_school_registration,school_management.teacher_group,1,1,0,0
 access_transfer_teacher,school.transfer.teacher,model_transfer_request,school_management.teacher_group,1,0,1,0
@@ -25,6 +27,8 @@ access_club_event_teacher,club.event.teacher,model_club_event,school_management.
 access_school_leave_teacher,school.leave.teacher,model_school_leave,school_management.teacher_group,1,1,1,1
 access_student_exam_teacher,student.exam.teacher,model_student_exam,school_management.teacher_group,1,1,1,1
 access_student_exam_paper_line_teacher,student.exam.paper_line.teacher,model_student_exam_paper_line,school_management.teacher_group,1,1,1,1
+access_student_report,student.report,model_school_report_wizard,school_management.teacher_group,1,1,1,1
+
 
 access_school_registration_staff,school.registration.student,model_school_registration,school_management.staff_group,1,1,1,1
 access_transfer_staff,school.transfer.staff,model_transfer_request,school_management.staff_group,1,1,1,1
@@ -38,6 +42,8 @@ access_club_event_staff,club.event.admin,model_club_event,school_management.staf
 access_school_leave_staff,school.leave.admin,model_school_leave,school_management.staff_group,1,1,1,1
 access_student_exam_staff,student.exam.admin,model_student_exam,school_management.staff_group,1,1,1,1
 access_student_exam_paper_line_staff,student.exam.paper_line.admin,model_student_exam_paper_line,school_management.staff_group,1,1,1,1
+access_student_report,student.report,model_school_report_wizard,school_management.staff_group,1,1,1,1
+
 
 access_school_registration_admin,school.registration.student,model_school_registration,school_management.school_admin_group,1,1,1,1
 access_transfer_admin,school.transfer.admin,model_transfer_request,school_management.school_admin_group,1,1,1,1
@@ -51,3 +57,5 @@ access_club_event_admin,club.event.admin,model_club_event,school_management.scho
 access_school_leave_admin,school.leave.admin,model_school_leave,school_management.school_admin_group,1,1,1,1
 access_student_exam_admin,student.exam.admin,model_student_exam,school_management.school_admin_group,1,1,1,1
 access_student_exam_paper_line_admin,student.exam.paper_line.admin,model_student_exam_paper_line,school_management.school_admin_group,1,1,1,1
+access_student_report,student.report,model_school_report_wizard,school_management.school_admin_group,1,1,1,1
+

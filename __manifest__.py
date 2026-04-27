@@ -22,6 +22,7 @@
         'data/email_template_data.xml',
         'data/automation_action.xml',
         'data/ir_cron_data.xml',
+        'wizard/school_report_wizard_views.xml',
         'views/school_registration_views.xml',
         'views/manage_department_views.xml',
         'views/manage_subject_views.xml',

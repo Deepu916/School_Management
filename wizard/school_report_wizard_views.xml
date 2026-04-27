@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="school_report_wizard_form_view" model="ir.ui.view">
+        <field name="name">school.report.wizard.form</field>
+        <field name="model">school.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Report">
+                <sheet>
+                    <group>
+                        <field name="class_id"/>
+                        <field name="student_id" domain="[('current_class_id','=',class_id)]"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button  sting="Print PDF Report"  class="btn-primary" />
+                    <button string="Cancel" class="btn-primary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_school_report_wizard" model="ir.actions.act_window">
+        <field name="name">Report</field>
+        <field name="res_model">school.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
+

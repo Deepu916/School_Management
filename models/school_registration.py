@@ -53,7 +53,6 @@ class SchoolRegistration(models.Model):
                                       default=lambda self:self.env.user.company_id)
     user_ids = fields.Many2one('registered.student',string="User",ondelete='cascade')
 
-
     _aadhaar_unique = models.Constraint('UNIQUE(aadhaar_number)','Aadhaar number must be unique')
 
 
