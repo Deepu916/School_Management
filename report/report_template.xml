@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="school_report_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2 t-field="o.club_id.name" style="font-weight:bold;"/>
+
+                        <div>
+                            <strong>Club In Charge: </strong>
+                            <span t-field="o.club_id.assigner_id"/>
+                        </div>
+                        <div>
+                            <strong> Printed Date: </strong>
+                            <span t-esc="datetime.date.today()"/>
+                        </div>
+                        <br></br>
+                    </div>
+
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="padding:12px;"><strong>SI.NO</strong></th>
+                                <th style="padding:12px;"><strong>Admission Number</strong></th>
+                                <th style="padding:12px;"><strong>Student Name</strong></th>
+                                <th style="padding:12px;"><strong>Student Class</strong></th>
+                                <th style="padding:12px;"><strong>Email</strong></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <t t-if="o.club_id">
+                            <t t-set="clubs" t-value="o.club_id.student_ids"/>
+                            <tr t-foreach="clubs" t-as="club">
+                                <td style="padding:12px;">
+                                    <span t-esc="club_index + 1 "/>
+                                </td>
+                                <td style="padding:12px;">
+                                    <span t-field="club.admission_number"/>
+                                </td>
+                                <td style="padding:12px;">
+                                    <span t-field="club.f_name"/> <span t-field="club.l_name"/>
+                                </td>
+                                <td style="padding:12px;">
+                                    <span t-field="club.current_class_id"/>
+                                </td>
+                                <td style="padding:12px;">
+                                    <span t-field="club.email"/>
+                                </td>
+                            </tr>
+                                
+                            </t>
+                        </tbody>
+                    </table>
+
+                    <div>
+                         <h2><strong><h2 t-field="o.club_id.name" style="font-weight:bold;"/>Events</strong></h2>
+                    </div>
+
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="padding:12px;"><strong>SI.NO</strong></th>
+                                <th style="padding:12px;"><strong>Event Name</strong></th>
+                                <th style="padding:12px;"><strong>Start Date</strong></th>
+                                <th style="padding:12px;"><strong>End Date</strong></th>
+                                <th style="padding:12px;"><strong>Status</strong></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="events" t-value="o.club_id.event_ids"/>
+                            <tr t-foreach="events" t-as="event">
+                                <td style="padding:12px;">
+                                    <span t-esc="event_index + 1"/>
+                                </td>
+                                <td style="padding:12px;">
+                                    <span t-field="event.name"/>
+                                </td>
+                                <td style="padding:12px;">
+                                    <span t-field="event.start_date"/>
+                                </td>
+                                <td style="padding:12px;">
+                                    <span t-field="event.end_date"/>
+                                </td>
+                                <td style="padding:12px;">
+                                    <span t-field="event.state"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

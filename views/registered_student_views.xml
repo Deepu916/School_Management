@@ -16,6 +16,7 @@
                     </group>
                     <group string="Academic Info">
                         <field name="current_class_id"/>
+                        <field name="department_id"/>
                         <field name="attendance" widget="radio"/>
                     </group>
                     </group>
@@ -42,6 +43,7 @@
                 <field name="admission_number" />
                 <field name="email"/>
                 <field name="current_class_id"/>
+                <field name="department_id"/>
             </list>
         </field>
     </record>

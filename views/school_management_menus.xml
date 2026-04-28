@@ -64,23 +64,22 @@
               parent="school_management_menu_root"
               action="action_club_event"/>
 <!--    Report Menu-->
-    <menuitem id="reprot_menu"
+    <menuitem id="report_menu"
               name="Reports"
               sequence="26"
-              parent="school_management_menu_root"
-              action="action_school_report_wizard"/>
-    <menuitem id="leave_reprot"
+              parent="school_management_menu_root"/>
+    <menuitem id="leave_report"
               name="Leave Information"
-              parent="reprot_menu"
-              action="action_school_report_wizard"/>
-    <menuitem id="club_reprot"
+              parent="report_menu"
+              action="action_leave_report_wizard"/>
+    <menuitem id="club_report"
               name="Club Data"
-              parent="reprot_menu"
-              action="action_school_report_wizard"/>
-    <menuitem id="student_reprot"
+              parent="report_menu"
+              action="action_club_report_wizard"/>
+    <menuitem id="student_report"
               name="Student Information"
-              parent="reprot_menu"
-              action="action_school_report_wizard"/>
+              parent="report_menu"
+              action="action_student_report_wizard"/>
 
     <!--Configuration Menu-->
     <menuitem id="configuration_menu_root"

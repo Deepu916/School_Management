@@ -11,3 +11,5 @@ class ManageDepartment(models.Model):
 
     name = fields.Char(string="Department Name")
     hod_id = fields.Many2one('res.users', string="Head of the Department")
+    class_ids = fields.One2many('manage.class','department_id')
+    student_ids = fields.One2many('registered.student','department_id')

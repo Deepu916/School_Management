@@ -35,6 +35,7 @@ class RegisteredStudent(models.Model):
     student_exam_id = fields.Many2many('student.exam',
                                        string='Exam',
                                        readonly=True)
+    department_id = fields.Many2one('manage.department',string="Department")
     attendance = fields.Selection([('present', 'Present'),
                 ('absent', 'Absent'),('half', 'Half Day')], default='present')
 
@@ -49,8 +50,16 @@ class RegisteredStudent(models.Model):
                     ('name', '=', next_class_number)
                 ], limit=1)
                 record.current_class_id = next_class
+                record.department_id = next_class.department_id
             else:
                 record.current_class_id = False
+        print('current class name',self.current_class_id.name)
+        print('current class id',self.current_class_id)
+        print('current class department',self.current_class_id.department_id)
+    # @api.depends('current_class_id')
+    # def _compute_department(self):
+    #     """Computing the department based on current class"""
+    #     self.department_id = self.current_class_id.department_id
 
     def unlink(self):
         """Unlink the registered student from registration form

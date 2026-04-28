@@ -7,22 +7,46 @@
             <form string="Report">
                 <sheet>
                     <group>
-                        <field name="class_id"/>
-                        <field name="student_id" domain="[('current_class_id','=',class_id)]"/>
+                        <field name="leave_category" invisible="report_type != 'leave'"/>
+                        <field name="student_category" invisible="report_type != 'student'"/>
+                        <field name="class_id" invisible="report_type == 'club' or leave_category != 'class' or student_category != 'class'"/>
+                        <field name="student_id" invisible="report_type == 'student' or leave_category != 'student'"/>
+                        <field name="filter_type" invisible="report_type != 'leave'"/>
+                        <field name="date_from" invisible="filter_type != 'custom'"/>
+                        <field name="date_to" invisible="filter_type != 'custom'"/>
+                        <field name="department_id" invisible="report_type != 'student' or student_category != 'department'"/>
+                        <field name="club_id" invisible="report_type != 'club'"/>
                     </group>
                 </sheet>
                 <footer>
-                    <button  sting="Print PDF Report"  class="btn-primary" />
+                    <button name="action_print_report" type="object" string="Print PDF Report" class="btn-primary"/>
                     <button string="Cancel" class="btn-primary" special="cancel"/>
                 </footer>
             </form>
         </field>
     </record>
-    <record id="action_school_report_wizard" model="ir.actions.act_window">
-        <field name="name">Report</field>
+    <record id="action_leave_report_wizard" model="ir.actions.act_window">
+        <field name="name">Leave Report</field>
         <field name="res_model">school.report.wizard</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
+        <field name="context">{'report_type':'leave'}</field>
+    </record>
+
+    <record id="action_club_report_wizard" model="ir.actions.act_window">
+        <field name="name">Club Report</field>
+        <field name="res_model">school.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'report_type':'club'}</field>
+    </record>
+
+    <record id="action_student_report_wizard" model="ir.actions.act_window">
+        <field name="name">Student Report</field>
+        <field name="res_model">school.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'report_type':'student'}</field>
     </record>
 </odoo>
 
