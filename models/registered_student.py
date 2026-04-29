@@ -28,6 +28,7 @@ class RegisteredStudent(models.Model):
                                 column1='student_id',
                                 column2='club_id',
                                 ondelete='cascade')
+    leave_ids = fields.One2many('school.leave','student_id')
 
     current_class_id = fields.Many2one('manage.class', string='Current Class',
                                        compute="_compute_current_class",

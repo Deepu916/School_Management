@@ -4,123 +4,131 @@
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
                 <t t-call="web.external_layout">
-                    <div class="page">
-                        <t t-if="o.class_id">
-                            <h1>
-                                <strong>
-                                    Student Information
-                                </strong>
-                            </h1>
-                            <div>
-                                <strong> Printed Date:</strong>
-                                <span t-esc="datetime.date.today()"/>
-                            </div>
-                            <div>
-                                <strong>Class:</strong>
-                                <span t-field="o.class_id"/>
-                            </div>
-                            <div>
-                                <strong>Department:</strong>
-                                <span t-field="o.class_id.department_id.name"/>
-                            </div>
-                        </t>
-                        <t t-elif="o.department_id">
-                            <h1>
-                                <strong>
-                                    <span t-field="o.department_id"/>
-                                     Student Information
-                                </strong>
-                            </h1>
-                            <div>
-                                <strong>Department:</strong>
-                                <span t-field="o.department_id.name"/>
-                            </div>
-                        </t>
-
-                        <br></br>
+                    <h1>
+                        <strong>
+                            Student Information
+                        </strong>
+                    </h1>
+                    <div>
+                        <strong>Printed Date:</strong>
+                        <span t-esc="datetime.date.today()"/>
                     </div>
-
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th style="padding:12px;">
-                                    <strong>SI.NO</strong>
-                                </th>
-                                <th style="padding:12px;">
-                                    <strong>Admission Number</strong>
-                                </th>
-                                <th style="padding:12px;">
-                                    <strong>Student Name</strong>
-                                </th>
-                                <t t-if="o.department_id">
-                                    <th style="padding:12px;">
-                                    <strong>Class</strong>
-                                </th>
+                    <t t-if="o.class_ids">
+                        <t t-set="student_details" t-value="o.class_ids"/>
+                    </t>
+                    <t t-else="o.department_ids">
+                        <t t-set="student_details" t-value="o.department_ids"/>
+                    </t>
+                    <t t-foreach="student_details" t-as="student_detail">
+                        <t t-if="student_detail.student_ids">
+                            <div class="page">
+                                <t t-if="o.class_ids">
+                                    <div>
+                                        <strong>Class:</strong>
+                                        <span t-field="student_detail.name"/>
+                                    </div>
+                                    <div>
+                                        <strong>Department:</strong>
+                                        <span t-field="student_detail.department_id.name"/>
+                                    </div>
                                 </t>
-                                <th style="padding:12px;">
-                                    <strong>DOB</strong>
-                                </th>
-                                <th style="padding:12px;">
-                                    <strong>Email</strong>
-                                </th>
-                                <th style="padding:12px;">
-                                    <strong>Registration Date</strong>
-                                </th>
-                            </tr>
-                        </thead>
+                                <t t-elif="o.department_ids">
+                                    <div>
+                                        <strong>Department:</strong>
+                                        <span t-field="student_detail.name"/>
+                                    </div>
+                                </t>
 
-                        <tbody>
-                            <t t-if="o.class_id">
-                                <t t-set="students" t-value="o.class_id.student_ids"/>
-                                <tr t-foreach="students" t-as="student">
-                                    <td style="padding:12px;">
-                                        <span t-esc="student_index + 1"/>
-                                    </td>
-                                    <td style="padding:12px;">
-                                        <span t-field="student.admission_number"/>
-                                    </td>
-                                    <td style="padding:12px;">
-                                        <span t-field="student.f_name"/> <span t-field="student.l_name"/>
-                                    </td>
-                                    <td style="padding:12px;">
-                                        <span t-field="student.dob"/>
-                                    </td>
-                                    <td style="padding:12px;">
-                                        <span t-field="student.email"/>
-                                    </td>
-                                    <td style="padding:12px;">
-                                        <span t-field="student.registration_date"/>
-                                    </td>
-                                </tr>
-                            </t>
-                            <t t-elif="o.department_id">
-                                <t t-set="students" t-value="o.department_id.student_ids"/>
-                                <tr t-foreach="students" t-as="student">
-                                    <td style="padding:12px;">
-                                        <span t-esc="student_index + 1 "/>
-                                    </td>
-                                    <td style="padding:12px;">
-                                        <span t-field="student.admission_number"/>
-                                    </td>
-                                    <td style="padding:12px;">
-                                        <span t-field="student.f_name"/> <span t-field="student.l_name"/>
-                                    </td>
-                                    <td style="padding:12px;">
-                                        <span t-field="student.current_class_id.name"/>
-                                    </td>
-                                    <td style="padding:12px;">
-                                        <span t-field="student.dob"/>
-                                    </td>
-                                    <td style="padding:12px;">
-                                        <span t-field="student.email"/>
-                                    </td>
-                                    <td style="padding:12px;">
-                                        <span t-field="student.registration_date"/>
-                                    </td>
-                                </tr>
-                            </t>
-                        </tbody>
-                    </table>
+                                <br></br>
+                            </div>
+
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th style="padding:12px;">
+                                            <strong>SI.NO</strong>
+                                        </th>
+                                        <th style="padding:12px;">
+                                            <strong>Admission Number</strong>
+                                        </th>
+                                        <th style="padding:12px;">
+                                            <strong>Student Name</strong>
+                                        </th>
+                                        <t t-if="o.department_ids">
+                                            <th style="padding:12px;">
+                                                <strong>Class</strong>
+                                            </th>
+                                        </t>
+                                        <th style="padding:12px;">
+                                            <strong>DOB</strong>
+                                        </th>
+                                        <th style="padding:12px;">
+                                            <strong>Email</strong>
+                                        </th>
+                                        <th style="padding:12px;">
+                                            <strong>Registration Date</strong>
+                                        </th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+<!--                                    Class Wise Student Details-->
+                                    <t t-if="o.class_ids">
+                                        <t t-set="students" t-value="student_detail.student_ids"/>
+                                        <tr t-foreach="students" t-as="student">
+                                            <td style="padding:12px;">
+                                                <span t-esc="student_index + 1"/>
+                                            </td>
+                                            <td style="padding:12px;">
+                                                <span t-field="student.admission_number"/>
+                                            </td>
+                                            <td style="padding:12px;">
+                                                <span t-field="student.f_name"/>
+                                                <span t-field="student.l_name"/>
+                                            </td>
+                                            <td style="padding:12px;">
+                                                <span t-field="student.dob"/>
+                                            </td>
+                                            <td style="padding:12px;">
+                                                <span t-field="student.email"/>
+                                            </td>
+                                            <td style="padding:12px;">
+                                                <span t-field="student.registration_date"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+<!--                                    Department Wise Student Details-->
+                                    <t t-elif="o.department_ids">
+                                        <t t-set="students" t-value="student_detail.student_ids"/>
+                                        <tr t-foreach="students" t-as="student">
+                                            <td style="padding:12px;">
+                                                <span t-esc="student_index + 1 "/>
+                                            </td>
+                                            <td style="padding:12px;">
+                                                <span t-field="student.admission_number"/>
+                                            </td>
+                                            <td style="padding:12px;">
+                                                <span t-field="student.f_name"/>
+                                                <span t-field="student.l_name"/>
+                                            </td>
+                                            <td style="padding:12px;">
+                                                <span t-field="student.current_class_id.name"/>
+                                            </td>
+                                            <td style="padding:12px;">
+                                                <span t-field="student.dob"/>
+                                            </td>
+                                            <td style="padding:12px;">
+                                                <span t-field="student.email"/>
+                                            </td>
+                                            <td style="padding:12px;">
+                                                <span t-field="student.registration_date"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </t>
+                    </t>
                 </t>
             </t>
         </t>

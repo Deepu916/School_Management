@@ -13,7 +13,7 @@ class SchoolLeave(models.Model):
     _rec_name = 'student_id'
 
     student_id = fields.Many2one('registered.student',string='Student',ondelete='cascade')
-    student_class = fields.Char(string='Student Class')
+    student_class = fields.Many2one('manage.class',string='Student Class')
     start_date = fields.Date(string='Start Date')
     end_date = fields.Date(string='End Date')
     total_days = fields.Integer(compute='_compute_total_days', string='Total Days')
@@ -49,7 +49,7 @@ class SchoolLeave(models.Model):
         """Autofill  class when student is selected"""
         if self.student_id:
             record = self.env['registered.student'].search([('id','=',self.student_id.id)])
-            self.student_class = record.current_class_id.name
+            self.student_class = record.current_class_id.id
             self.multi_school_id = record.registration_id.company_id
 
     @api.depends('start_date','end_date')

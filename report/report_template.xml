@@ -4,17 +4,21 @@
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
                 <t t-call="web.external_layout">
-                    <div class="page">
-                        <h2 t-field="o.club_id.name" style="font-weight:bold;"/>
-
-                        <div>
-                            <strong>Club In Charge: </strong>
-                            <span t-field="o.club_id.assigner_id"/>
-                        </div>
-                        <div>
+                    <h2 style="text-align:center;"><strong>Club Details</strong></h2>
+                    <div>
                             <strong> Printed Date: </strong>
                             <span t-esc="datetime.date.today()"/>
                         </div>
+                    <t t-set="student_clubs" t-value="o.club_ids"/>
+                    <t t-foreach="student_clubs" t-as="student_club">
+                    <div class="page">
+                        <h2 t-field="student_club.name" style="font-weight:bold;"/>
+
+                        <div>
+                            <strong>Club In Charge: </strong>
+                            <span t-field="student_club.assigner_id"/>
+                        </div>
+
                         <br></br>
                     </div>
 
@@ -30,8 +34,8 @@
                         </thead>
 
                         <tbody>
-                            <t t-if="o.club_id">
-                            <t t-set="clubs" t-value="o.club_id.student_ids"/>
+                            <t t-if="o.club_ids">
+                            <t t-set="clubs" t-value="student_club.student_ids"/>
                             <tr t-foreach="clubs" t-as="club">
                                 <td style="padding:12px;">
                                     <span t-esc="club_index + 1 "/>
@@ -49,13 +53,14 @@
                                     <span t-field="club.email"/>
                                 </td>
                             </tr>
-                                
+
                             </t>
                         </tbody>
                     </table>
 
+                    <t t-if="student_club.event_ids">
                     <div>
-                         <h2><strong><h2 t-field="o.club_id.name" style="font-weight:bold;"/>Events</strong></h2>
+                         <h2><strong><h2 t-field="student_club.name" style="font-weight:bold;"/>Events</strong></h2>
                     </div>
 
                     <table class="table table-bordered">
@@ -69,7 +74,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <t t-set="events" t-value="o.club_id.event_ids"/>
+                            <t t-set="events" t-value="student_club.event_ids"/>
                             <tr t-foreach="events" t-as="event">
                                 <td style="padding:12px;">
                                     <span t-esc="event_index + 1"/>
@@ -89,6 +94,8 @@
                             </tr>
                         </tbody>
                     </table>
+                    </t>
+                    </t>
                 </t>
             </t>
         </t>

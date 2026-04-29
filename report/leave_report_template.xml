@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="leave_report_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <h2>
+                        <strong>Student Leave</strong>
+                    </h2>
+                    <div>
+                        <strong>Printed Date:</strong>
+                        <span t-esc="datetime.date.today()"/>
+                    </div>
+                    <t t-if="o.filter_type == 'month'">
+                        <div>
+                            <strong>Month :</strong>
+                            <span t-esc="datetime.date.today().strftime('%B')"/>
+                        </div>
+                    </t>
+                    <t t-elif="o.filter_type == 'custom'">
+                        <div>
+                            <strong>From Date :</strong>
+                            <span t-field="o.date_from"/>
+                        </div>
+                        <div>
+                            <strong>To Date :</strong>
+                            <span t-field="o.date_to"/>
+                        </div>
+                    </t>
+                    <t t-elif="o.filter_type == 'day'">
+                        <div>
+                            <strong>Day :</strong>
+                            <span t-esc="datetime.date.today()"/>
+                        </div>
+                        <div>
+                            <strong>To Date :</strong>
+                            <span t-field="o.date_to"/>
+                        </div>
+                    </t>
+                    <t t-else="o.filter_type == 'week'">
+                        <div>
+                            <strong>Day :</strong>
+                            <span t-esc="datetime.date.today()"/>
+                        </div>
+                        <div>
+                            <strong>To Date :</strong>
+                            <span t-field="o.date_to"/>
+                        </div>
+                    </t>
+                    <t t-if="o.class_ids">
+                        <t t-set="student_leaves" t-value="o.class_ids"/>
+                        <t t-foreach="student_leaves" t-as="student_leave">
+                            <t t-if="student_leave.student_ids.leave_ids.student_id">
+                                <t t-set="classes" t-value="student_leave.student_ids.leave_ids"/>
+                                <div class="page">
+                                    <t t-foreach="classes" t-as="class">
+                                        <t t-if="o.filter_type == 'month'">
+                                            <t t-if="class.start_date.month == datetime.date.today().month and class.end_date.month == datetime.date.today().month">
+                                                <div>
+                                                    <strong>Class :</strong>
+                                                    <span t-field="student_leave.name"/>
+                                                </div>
+                                            </t>
+                                        </t>
+                                        <t t-if="o.filter_type == 'day'">
+                                            <t t-if="class.start_date.day == datetime.date.today().day and class.end_date.day == datetime.date.today().day">
+                                                <div>
+                                                    <strong>Class :</strong>
+                                                    <span t-field="student_leave.name"/>
+                                                </div>
+                                            </t>
+                                        </t>
+                                        <t t-if="o.filter_type == 'custom'">
+                                            <t t-if="class.start_date >= o.date_from and o.date_to >= class.end_date">
+                                                <div>
+                                                    <strong>Class :</strong>
+                                                    <span t-field="student_leave.name"/>
+                                                </div>
+                                            </t>
+                                        </t>
+                                        <t t-if="o.filter_type == 'week'">
+                                            <t t-if="datetime.date.today >= class.start_date.weekday() and o.date_to >= class.end_date">
+                                                <div>
+                                                    <strong>Class :</strong>
+                                                    <span t-field="student_leave.name"/>
+                                                </div>
+                                            </t>
+                                        </t>
+                                    </t>
+                                    <br></br>
+                                </div>
+
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <t t-set="classes" t-value="student_leave.student_ids.leave_ids"/>
+                                        <t t-foreach="classes" t-as="class">
+                                            <t t-if="o.filter_type == 'month'">
+                                                <t t-if="class.start_date.month == datetime.date.today().month and class.end_date.month == datetime.date.today().month">
+                                                    <tr>
+                                                        <th style="padding:12px;">
+                                                            <strong>SI.NO</strong>
+                                                        </th>
+                                                        <th style="padding:12px;">
+                                                            <strong>Student Name</strong>
+                                                        </th>
+                                                        <th style="padding:12px;">
+                                                            <strong>Start Date</strong>
+                                                        </th>
+                                                        <th style="padding:12px;">
+                                                            <strong>End Date</strong>
+                                                        </th>
+                                                    </tr>
+                                                </t>
+                                            </t>
+                                            <t t-elif="o.filter_type == 'day'">
+                                                <t t-if="class.start_date.day == datetime.date.today().day and class.end_date.day == datetime.date.today().day">
+                                                    <tr>
+                                                        <th style="padding:12px;">
+                                                            <strong>SI.NO</strong>
+                                                        </th>
+                                                        <th style="padding:12px;">
+                                                            <strong>Student Name</strong>
+                                                        </th>
+                                                        <th style="padding:12px;">
+                                                            <strong>Start Date</strong>
+                                                        </th>
+                                                        <th style="padding:12px;">
+                                                            <strong>End Date</strong>
+                                                        </th>
+                                                    </tr>
+
+                                                </t>
+                                            </t>
+                                            <t t-elif="o.filter_type == 'custom'">
+                                                <t t-if="class.start_date >= o.date_from and o.date_to >= class.end_date">
+                                                    <tr>
+                                                        <th style="padding:12px;">
+                                                            <strong>SI.NO</strong>
+                                                        </th>
+                                                        <th style="padding:12px;">
+                                                            <strong>Student Name</strong>
+                                                        </th>
+                                                        <th style="padding:12px;">
+                                                            <strong>Start Date</strong>
+                                                        </th>
+                                                        <th style="padding:12px;">
+                                                            <strong>End Date</strong>
+                                                        </th>
+                                                    </tr>
+
+                                                </t>
+                                            </t>
+
+                                        </t>
+
+                                    </thead>
+
+                                    <tbody>
+                                        <!--                            Class Wise Student Leave Details -->
+                                        <t t-if="o.class_ids">
+                                            <t t-set="classes" t-value="student_leave.student_ids.leave_ids"/>
+                                            <tr t-foreach="classes" t-as="class">
+                                                <t t-if="o.filter_type == 'month'">
+                                                    <t t-if="class.start_date.month == datetime.date.today().month and class.end_date.month == datetime.date.today().month">
+                                                        <td style="padding:12px;">
+                                                            <span t-esc="class_index + 1 "/>
+                                                        </td>
+                                                        <td style="padding:12px;">
+                                                            <span t-field="class.student_id"/>
+                                                        </td>
+                                                        <td style="padding:12px;">
+                                                            <span t-field="class.start_date"/>
+                                                        </td>
+                                                        <td style="padding:12px;">
+                                                            <span t-field="class.end_date"/>
+                                                        </td>
+                                                    </t>
+                                                </t>
+                                                <t t-elif="o.filter_type == 'day'">
+                                                    <t t-if="class.start_date.day == datetime.date.today().day and class.end_date.day == datetime.date.today().day">
+                                                        <td style="padding:12px;">
+                                                            <span t-esc="class_index + 1 "/>
+                                                        </td>
+                                                        <td style="padding:12px;">
+                                                            <span t-field="class.student_id"/>
+                                                        </td>
+                                                        <td style="padding:12px;">
+                                                            <span t-field="class.start_date"/>
+                                                        </td>
+                                                        <td style="padding:12px;">
+                                                            <span t-field="class.end_date"/>
+                                                        </td>
+                                                    </t>
+
+                                                </t>
+                                                <t t-elif="o.filter_type == 'custom'">
+                                                    <t t-if=" class.start_date >= o.date_from and o.date_to >= class.end_date">
+                                                        <td style="padding:12px;">
+                                                            <span t-esc="class_index + 1 "/>
+                                                        </td>
+                                                        <td style="padding:12px;">
+                                                            <span t-field="class.student_id"/>
+                                                        </td>
+                                                        <td style="padding:12px;">
+                                                            <span t-field="class.start_date"/>
+                                                        </td>
+                                                        <td style="padding:12px;">
+                                                            <span t-field="class.end_date"/>
+                                                        </td>
+                                                    </t>
+
+                                                </t>
+
+
+                                            </tr>
+
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </t>
+                        </t>
+                    </t>
+                    <t t-else="o.student_ids">
+                        <t t-set="student_leaves" t-value="o.student_ids"/>
+                        <t t-foreach="student_leaves" t-as="student_leave">
+                            <t t-if="student_leave.leave_ids.student_id">
+                                <t t-set="classes" t-value="student_leave.leave_ids"/>
+                                <div class="page">
+                                    <t t-foreach="classes" t-as="class">
+                                        <t t-if="o.filter_type == 'month'">
+                                            <t t-if="class.start_date.month == datetime.date.today().month and class.end_date.month == datetime.date.today().month">
+
+                                                <div>
+                                                    <strong>Student Name :</strong>
+                                                    <span t-field="student_leave.f_name"/>
+                                                    <span t-field="student_leave.l_name"/>
+                                                </div>
+                                                <div>
+                                                    <strong>Class :</strong>
+                                                    <span t-field="student_leave.current_class_id"/>
+                                                </div>
+                                            </t>
+                                        </t>
+                                        <t t-if="o.filter_type == 'custom'">
+                                            <t t-if="class.start_date >= o.date_from and o.date_to >= class.end_date">
+
+                                                <div>
+                                                    <strong>Student Name :</strong>
+                                                    <span t-field="student_leave.f_name"/>
+                                                    <span t-field="student_leave.l_name"/>
+                                                </div>
+                                                <div>
+                                                    <strong>Class :</strong>
+                                                    <span t-field="student_leave.current_class_id"/>
+                                                </div>
+                                            </t>
+                                        </t>
+                                        <t t-if="o.filter_type == 'day'">
+                                            <t t-if="class.start_date.day == datetime.date.today().day and class.end_date.day == datetime.date.today().day">
+
+                                                <div>
+                                                    <strong>Student Name :</strong>
+                                                    <span t-field="student_leave.f_name"/>
+                                                    <span t-field="student_leave.l_name"/>
+                                                </div>
+                                                <div>
+                                                    <strong>Class :</strong>
+                                                    <span t-field="student_leave.current_class_id"/>
+                                                </div>
+                                            </t>
+                                        </t>
+
+                                    </t>
+                                    <br></br>
+
+                                </div>
+
+
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <t t-set="classes" t-value="student_leave.leave_ids"/>
+                                        <t t-foreach="classes" t-as="class">
+                                            <t t-if="o.filter_type == 'month'">
+                                                <t t-if="class.start_date.month == datetime.date.today().month and class.end_date.month == datetime.date.today().month">
+                                                    <tr>
+                                                        <th style="padding:12px;">
+                                                            <strong>SI.NO</strong>
+                                                        </th>
+
+                                                        <th style="padding:12px;">
+                                                            <strong>Start Date</strong>
+                                                        </th>
+                                                        <th style="padding:12px;">
+                                                            <strong>End Date</strong>
+                                                        </th>
+                                                    </tr>
+                                                </t>
+                                            </t>
+                                            <t t-elif="o.filter_type == 'day'">
+                                                <t t-if="class.start_date.day == datetime.date.today().day and class.end_date.day == datetime.date.today().day">
+                                                    <tr>
+                                                        <th style="padding:12px;">
+                                                            <strong>SI.NO</strong>
+                                                        </th>
+
+                                                        <th style="padding:12px;">
+                                                            <strong>Start Date</strong>
+                                                        </th>
+                                                        <th style="padding:12px;">
+                                                            <strong>End Date</strong>
+                                                        </th>
+                                                    </tr>
+                                                </t>
+                                            </t>
+                                            <t t-elif="o.filter_type == 'custom'">
+                                                <t t-if="class.start_date >= o.date_from and o.date_to >= class.end_date">
+                                                    <tr>
+                                                        <th style="padding:12px;">
+                                                            <strong>SI.NO</strong>
+                                                        </th>
+
+                                                        <th style="padding:12px;">
+                                                            <strong>Start Date</strong>
+                                                        </th>
+                                                        <th style="padding:12px;">
+                                                            <strong>End Date</strong>
+                                                        </th>
+                                                    </tr>
+                                                </t>
+                                            </t>
+                                        </t>
+                                    </thead>
+
+                                    <tbody>
+                                        <!--                            Student Wise Leave Details -->
+                                        <t t-if="o.student_ids">
+                                            <t t-set="classes" t-value="student_leave.leave_ids"/>
+                                            <tr t-foreach="classes" t-as="class">
+                                                <t t-if="o.filter_type == 'month'">
+                                                    <t t-if="class.start_date.month == datetime.date.today().month and class.end_date.month == datetime.date.today().month">
+                                                        <td style="padding:12px;">
+                                                            <span t-esc="class_index + 1 "/>
+                                                        </td>
+
+                                                        <td style="padding:12px;">
+                                                            <span t-field="class.start_date"/>
+                                                        </td>
+                                                        <td style="padding:12px;">
+                                                            <span t-field="class.end_date"/>
+                                                        </td>
+                                                    </t>
+                                                </t>
+                                                <t t-elif="o.filter_type == 'day'">
+                                                    <t t-if="class.start_date.day == datetime.date.today().day and class.end_date.day == datetime.date.today().day">
+                                                        <td style="padding:12px;">
+                                                            <span t-esc="class_index + 1 "/>
+                                                        </td>
+
+                                                        <td style="padding:12px;">
+                                                            <span t-field="class.start_date"/>
+                                                        </td>
+                                                        <td style="padding:12px;">
+                                                            <span t-field="class.end_date"/>
+                                                        </td>
+                                                    </t>
+                                                </t>
+                                                <t t-elif="o.filter_type == 'custom'">
+                                                    <t t-if="class.start_date >= o.date_from and o.date_to >= class.end_date">
+                                                        <td style="padding:12px;">
+                                                            <span t-esc="class_index + 1 "/>
+                                                        </td>
+
+                                                        <td style="padding:12px;">
+                                                            <span t-field="class.start_date"/>
+                                                        </td>
+                                                        <td style="padding:12px;">
+                                                            <span t-field="class.end_date"/>
+                                                        </td>
+                                                    </t>
+                                                </t>
+                                            </tr>
+
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </t>
+                        </t>
+                    </t>
+
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

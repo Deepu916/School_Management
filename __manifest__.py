@@ -17,6 +17,7 @@
         'security/ir.model.access.csv',
         'report/report_template.xml',
         'report/student_report_template.xml',
+        'report/leave_report_template.xml',
         'report/school_report.xml',
         'data/sequence_data.xml',
         'data/department_data.xml',
