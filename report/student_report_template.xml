@@ -4,7 +4,7 @@
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
                 <t t-call="web.external_layout">
-                    <h1>
+                    <h1 style="text-align:center;">
                         <strong>
                             Student Information
                         </strong>
@@ -21,30 +21,37 @@
                     </t>
                     <t t-foreach="student_details" t-as="student_detail">
                         <t t-if="student_detail.student_ids">
-                            <div class="page">
+
+                            <div style="page-break-inside: avoid;">
+                                 <div class="page">
                                 <t t-if="o.class_ids">
                                     <div>
-                                        <strong>Class:</strong>
+                                       <h5>
+                                            <strong>Class:</strong>
                                         <span t-field="student_detail.name"/>
+                                       </h5>
                                     </div>
                                     <div>
-                                        <strong>Department:</strong>
+                                        <h5>
+                                            <strong>Department:</strong>
                                         <span t-field="student_detail.department_id.name"/>
+                                        </h5>
                                     </div>
                                 </t>
                                 <t t-elif="o.department_ids">
                                     <div>
-                                        <strong>Department:</strong>
+                                        <h5>
+                                            <strong>Department:</strong>
                                         <span t-field="student_detail.name"/>
+                                        </h5>
                                     </div>
                                 </t>
 
                                 <br></br>
                             </div>
-
-                            <table class="table table-bordered">
+                            <table class="table table-bordered" style="table-layout: fixed;">
                                 <thead>
-                                    <tr>
+                                    <tr style="page-break-inside: avoid;">
                                         <th style="padding:12px;">
                                             <strong>SI.NO</strong>
                                         </th>
@@ -75,7 +82,7 @@
 <!--                                    Class Wise Student Details-->
                                     <t t-if="o.class_ids">
                                         <t t-set="students" t-value="student_detail.student_ids"/>
-                                        <tr t-foreach="students" t-as="student">
+                                        <tr t-foreach="students" t-as="student" style="page-break-inside: avoid;">
                                             <td style="padding:12px;">
                                                 <span t-esc="student_index + 1"/>
                                             </td>
@@ -100,7 +107,7 @@
 <!--                                    Department Wise Student Details-->
                                     <t t-elif="o.department_ids">
                                         <t t-set="students" t-value="student_detail.student_ids"/>
-                                        <tr t-foreach="students" t-as="student">
+                                        <tr t-foreach="students" t-as="student" style="page-break-inside: avoid;">
                                             <td style="padding:12px;">
                                                 <span t-esc="student_index + 1 "/>
                                             </td>
@@ -127,6 +134,7 @@
                                     </t>
                                 </tbody>
                             </table>
+                            </div>
                         </t>
                     </t>
                 </t>

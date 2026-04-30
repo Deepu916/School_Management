@@ -42,6 +42,11 @@ class SchoolReportWizard(models.TransientModel):
                 self.department_ids = self.env['manage.department'].search([])
             report_action = 'school_management.action_student_report'
         elif report_action_type == 'club':
+            # query = """select club_ids.id from school_report_wizard as club_id inner join student_club as sc on sc.id = club_id.student_ids"""
+            # self.env.cr.execute(query)
+            # report = self.env.cr.dictfetchall()
+            # data = ({'date':self.read()[0],'report':report})
+            # return self.env.ref('school_management.school_info_report').report_action(None,data)
             if not self.club_ids:
                 self.club_ids = self.env['student.club'].search([])
             report_action = 'school_management.school_info_report'
@@ -51,5 +56,8 @@ class SchoolReportWizard(models.TransientModel):
             elif self.leave_category == 'student' and not self.student_ids:
                 self.student_ids = self.env['registered.student'].search([])
             report_action = 'school_management.student_leave_report'
-        return self.env.ref(report_action).report_action(self)
+        report_reference = self.env.ref(report_action).report_action(self)
+        report_reference.update({'close_on_report_download':True})
+        return report_reference
+
 
